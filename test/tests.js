@@ -1,4 +1,4 @@
-define(function() { 
+define(function() {
   QUnit.start();
   /*
     ======== A Handy Little QUnit Reference ========
@@ -39,6 +39,17 @@ define(function() {
     });
   });
 
+  module('Version');
 
+  test('is rendered', function() {
+    expect(1);
+    stop();
+    require(['jquery', 'react', 'jsx!Version'], function($, React, Version) {
+      start();
+      var $container = $('#qunit-fixture');
+      React.render(React.createElement(Version), $container[0]);
+      equal($container.text(), 'jQuery 2.1.3, React 0.12.2', 'rendered properly');
+    });
+  });
 
 });
